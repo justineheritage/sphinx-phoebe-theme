@@ -30,6 +30,7 @@ html_theme = 'sphinx_phoebe_theme'
 html_theme_options = {
     # Branding
     "nav_title": "Sphinx Phoebe Theme",
+    "logo_icon": "_static/images/phoebe_white.png",
 
     # Colors - use theme's own default colors
     "color_primary": "#2c3e50",
@@ -56,6 +57,8 @@ html_theme_options = {
 html_static_path = ['_static']
 html_extra_path = ['.nojekyll']  # Disable Jekyll on GitHub Pages
 html_title = "Sphinx Phoebe Theme Documentation"
+html_logo = "_static/images/phoebe_white.png"
+html_favicon = "_static/images/phoebe_black.png"
 
 # Add any paths that contain custom static files (such as style sheets)
 # They are copied after the builtin static files, so a file named "default.css"
