@@ -1,0 +1,20 @@
+{# Sphinx Phoebe Theme — Sidebar (navigation wrapper) #}
+<nav class="cl-nav" aria-label="Primary navigation">
+
+  {# Site title (visible on mobile drawer) #}
+  <a class="cl-nav-title" href="{{ pathto(master_doc)|e }}"
+     title="{{ docstitle|striptags|e }}">
+    {%- if logo_url %}
+    <img class="cl-nav-logo" src="{{ logo_url }}" alt="Logo" height="24">
+    {%- endif %}
+    <span>{{ theme_nav_title or shorttitle }}</span>
+  </a>
+
+  {# Global table of contents #}
+  {% include "globaltoc.html" %}
+
+  <hr class="cl-nav-divider"/>
+
+  {# Help links #}
+  {% include "sidebarhelp.html" %}
+</nav>

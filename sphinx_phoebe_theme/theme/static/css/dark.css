@@ -1,0 +1,460 @@
+/* =====================================================================
+   Sphinx Phoebe Theme — Dark Mode
+   Applied via [data-theme="dark"] on <html>
+
+   Uses html[data-theme="dark"] (specificity 0,1,1) to beat
+   :root (specificity 0,1,0) regardless of load order.
+   ===================================================================== */
+
+/* ── CSS Variable Overrides ────────────────────────────────────────── */
+html[data-theme="dark"] {
+  --cl-bg:             #0f1117;
+  --cl-bg-secondary:   #161822;
+  --cl-bg-tertiary:    #1e2030;
+  --cl-bg-code:        #1a1c2a;
+  --cl-text:           #e4e4e7;
+  --cl-text-secondary: #a1a1aa;
+  --cl-text-muted:     #71717a;
+  --cl-border:         #2d2d44;
+  --cl-border-light:   #232338;
+  --cl-accent:         #23B852;
+  --cl-accent-hover:   #2dd864;
+  --cl-accent-subtle:  rgba(35, 184, 82, 0.1);
+  --cl-link:           #60a5fa;
+  --cl-link-hover:     #93c5fd;
+  --cl-header-bg:      #0d0f16;
+  --cl-header-text:    #e4e4e7;
+  --cl-sidebar-bg:     #131520;
+  --cl-sidebar-border: #232338;
+
+  --cl-shadow-xs:  0 1px 2px rgba(0,0,0,0.2);
+  --cl-shadow-sm:  0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
+  --cl-shadow-md:  0 4px 6px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2);
+  --cl-shadow-lg:  0 10px 15px rgba(0,0,0,0.4), 0 4px 6px rgba(0,0,0,0.3);
+
+  color-scheme: dark;
+}
+
+/* ── Body & global ─────────────────────────────────────────────────── */
+html[data-theme="dark"] body {
+  background: var(--cl-bg) !important;
+  color: var(--cl-text) !important;
+}
+
+/* ── Images ─────────────────────────────────────────────────────────── */
+html[data-theme="dark"] img:not([src$=".svg"]) {
+  filter: brightness(0.9);
+}
+
+/* ── Typography ────────────────────────────────────────────────────── */
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4,
+html[data-theme="dark"] h5,
+html[data-theme="dark"] h6 {
+  color: var(--cl-text);
+}
+
+html[data-theme="dark"] a {
+  color: var(--cl-link);
+}
+html[data-theme="dark"] a:hover {
+  color: var(--cl-link-hover);
+}
+
+html[data-theme="dark"] .md-typeset a {
+  color: var(--cl-link) !important;
+}
+
+html[data-theme="dark"] code {
+  background: var(--cl-bg-code);
+  color: var(--cl-text);
+}
+
+html[data-theme="dark"] pre {
+  background: var(--cl-bg-code);
+}
+
+/* ── Code highlighting ─────────────────────────────────────────────── */
+html[data-theme="dark"] .highlight,
+html[data-theme="dark"] .codehilite {
+  background: transparent !important;
+}
+
+html[data-theme="dark"] .highlight pre,
+html[data-theme="dark"] .codehilite pre,
+html[data-theme="dark"] .md-typeset .codehilite code,
+html[data-theme="dark"] .md-typeset .codehilite pre,
+html[data-theme="dark"] .highlight code,
+html[data-theme="dark"] .highlight pre {
+  background: var(--cl-bg-code) !important;
+  color: var(--cl-text);
+}
+
+html[data-theme="dark"] .highlight .go,
+html[data-theme="dark"] .codehilite .go {
+  color: var(--cl-text-secondary);
+}
+
+/* ── Pygments syntax colors for dark mode ──────────────────────────── */
+html[data-theme="dark"] .highlight .c,
+html[data-theme="dark"] .highlight .c1,
+html[data-theme="dark"] .highlight .cm,
+html[data-theme="dark"] .highlight .cs { color: #6b7394; font-style: italic; }
+html[data-theme="dark"] .highlight .k,
+html[data-theme="dark"] .highlight .kn,
+html[data-theme="dark"] .highlight .kd { color: #c792ea; }
+html[data-theme="dark"] .highlight .s,
+html[data-theme="dark"] .highlight .s1,
+html[data-theme="dark"] .highlight .s2,
+html[data-theme="dark"] .highlight .sa { color: #c3e88d; }
+html[data-theme="dark"] .highlight .n  { color: var(--cl-text); }
+html[data-theme="dark"] .highlight .o  { color: #89ddff; }
+html[data-theme="dark"] .highlight .p  { color: #89ddff; }
+html[data-theme="dark"] .highlight .mi,
+html[data-theme="dark"] .highlight .mf { color: #f78c6c; }
+html[data-theme="dark"] .highlight .nb { color: #82aaff; }
+html[data-theme="dark"] .highlight .nf { color: #82aaff; }
+html[data-theme="dark"] .highlight .nc { color: #ffcb6b; }
+html[data-theme="dark"] .highlight .nn { color: #ffcb6b; }
+html[data-theme="dark"] .highlight .nt { color: #f07178; }
+html[data-theme="dark"] .highlight .na { color: #c792ea; }
+html[data-theme="dark"] .highlight .nv { color: #f07178; }
+html[data-theme="dark"] .highlight .bp { color: #89ddff; }
+html[data-theme="dark"] .highlight .si { color: #89ddff; }
+
+/* ── Header ────────────────────────────────────────────────────────── */
+html[data-theme="dark"] .cl-header {
+  background: var(--cl-header-bg);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.05);
+}
+
+html[data-theme="dark"] .cl-header-brand,
+html[data-theme="dark"] .cl-header-brand:hover {
+  color: var(--cl-header-text);
+}
+
+/* ── Sidebar ───────────────────────────────────────────────────────── */
+html[data-theme="dark"] .cl-sidebar {
+  background: var(--cl-sidebar-bg);
+  border-right-color: var(--cl-sidebar-border);
+}
+html[data-theme="dark"] .cl-sidebar .cl-nav-link,
+html[data-theme="dark"] .cl-sidebar a.cl-nav-link {
+  color: rgba(255, 255, 255, 0.75);
+}
+html[data-theme="dark"] .cl-sidebar .cl-nav-link:hover,
+html[data-theme="dark"] .cl-sidebar a.cl-nav-link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+html[data-theme="dark"] .cl-sidebar .cl-nav-help .cl-nav-link,
+html[data-theme="dark"] .cl-sidebar .cl-nav-help a.cl-nav-link {
+  color: rgba(255, 255, 255, 0.4);
+}
+html[data-theme="dark"] .cl-sidebar .cl-nav-help .cl-nav-link:hover,
+html[data-theme="dark"] .cl-sidebar .cl-nav-help a.cl-nav-link:hover {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* ── Table headers ──────────────────────────────────────────────────── */
+html[data-theme="dark"] table {
+  border-color: var(--cl-border);
+}
+
+html[data-theme="dark"] table:not([class]) th,
+html[data-theme="dark"] table.docutils th,
+html[data-theme="dark"] .md-typeset table:not([class]) th {
+  background-color: #2a2d3e !important;
+  color: var(--cl-text) !important;
+  border-color: var(--cl-border);
+}
+
+html[data-theme="dark"] table thead code {
+  color: var(--cl-text) !important;
+}
+
+html[data-theme="dark"] table td,
+html[data-theme="dark"] table.docutils td {
+  border-color: var(--cl-border);
+}
+
+/* ── Admonitions ────────────────────────────────────────────────────── */
+html[data-theme="dark"] .admonition,
+html[data-theme="dark"] div.admonition,
+html[data-theme="dark"] .md-typeset .admonition {
+  background: var(--cl-bg-secondary) !important;
+}
+
+html[data-theme="dark"] .admonition.note       { background: rgba(68,138,255,0.08) !important; }
+html[data-theme="dark"] .admonition.tip,
+html[data-theme="dark"] .admonition.hint       { background: rgba(0,171,73,0.08) !important; }
+html[data-theme="dark"] .admonition.important  { background: rgba(255,145,0,0.08) !important; }
+html[data-theme="dark"] .admonition.warning,
+html[data-theme="dark"] .admonition.caution    { background: rgba(255,109,0,0.08) !important; }
+html[data-theme="dark"] .admonition.danger,
+html[data-theme="dark"] .admonition.error      { background: rgba(244,67,54,0.08) !important; }
+html[data-theme="dark"] .admonition.seealso    { background: rgba(124,77,255,0.08) !important; }
+html[data-theme="dark"] .admonition.todo       { background: rgba(156,39,176,0.08) !important; }
+
+html[data-theme="dark"] .admonition > .admonition-title,
+html[data-theme="dark"] .admonition > summary,
+html[data-theme="dark"] .md-typeset .admonition > .admonition-title,
+html[data-theme="dark"] .md-typeset .admonition.hint > .admonition-title,
+html[data-theme="dark"] .md-typeset .admonition.note > .admonition-title,
+html[data-theme="dark"] .md-typeset .admonition.tip > .admonition-title,
+html[data-theme="dark"] .md-typeset .admonition.important > .admonition-title,
+html[data-theme="dark"] .md-typeset .admonition.warning > .admonition-title,
+html[data-theme="dark"] .md-typeset .admonition.caution > .admonition-title {
+  background: transparent !important;
+  border-bottom-color: var(--cl-border-light) !important;
+}
+
+html[data-theme="dark"] .admonition.note       > .admonition-title { color: #60a5fa; }
+html[data-theme="dark"] .admonition.tip        > .admonition-title,
+html[data-theme="dark"] .admonition.hint       > .admonition-title { color: #4ade80; }
+html[data-theme="dark"] .admonition.important  > .admonition-title { color: #fbbf24; }
+html[data-theme="dark"] .admonition.warning    > .admonition-title,
+html[data-theme="dark"] .admonition.caution    > .admonition-title { color: #fb923c; }
+html[data-theme="dark"] .admonition.danger     > .admonition-title,
+html[data-theme="dark"] .admonition.error      > .admonition-title { color: #f87171; }
+html[data-theme="dark"] .admonition.todo       > .admonition-title { color: #c084fc; }
+
+/* ── Details / dropdowns ────────────────────────────────────────────── */
+html[data-theme="dark"] details {
+  background: var(--cl-bg-secondary);
+  border-color: var(--cl-border);
+}
+
+html[data-theme="dark"] details > summary {
+  background: var(--cl-bg-tertiary);
+  color: var(--cl-text);
+}
+
+html[data-theme="dark"] details.dropdown .summary-title {
+  color: var(--cl-text);
+}
+
+html[data-theme="dark"] details.role summary.summary-title.card-header {
+  color: var(--cl-text-secondary);
+}
+
+html[data-theme="dark"] details.toc summary.summary-title.card-header {
+  background-color: var(--cl-bg-tertiary);
+}
+
+/* ── Badges ─────────────────────────────────────────────────────────── */
+html[data-theme="dark"] .badge {
+  filter: brightness(0.85);
+}
+
+/* ── Blockquote ─────────────────────────────────────────────────────── */
+html[data-theme="dark"] blockquote,
+html[data-theme="dark"] .md-typeset blockquote {
+  border-left-color: var(--cl-border) !important;
+  color: var(--cl-text-secondary) !important;
+}
+
+/* ── sphinx_design cards ────────────────────────────────────────────── */
+html[data-theme="dark"] .sd-card {
+  background: var(--cl-bg-secondary) !important;
+  border-color: var(--cl-border) !important;
+  color: var(--cl-text);
+}
+
+html[data-theme="dark"] .sd-card-header {
+  background: var(--cl-bg-tertiary) !important;
+  border-bottom-color: var(--cl-border) !important;
+  color: var(--cl-text) !important;
+}
+
+html[data-theme="dark"] .sd-card-body {
+  background: var(--cl-bg-secondary) !important;
+  color: var(--cl-text);
+}
+
+html[data-theme="dark"] .sd-card-footer {
+  background: var(--cl-bg-secondary) !important;
+  border-top-color: var(--cl-border) !important;
+}
+
+/* sphinx_design colored headers — tone them down in dark mode */
+html[data-theme="dark"] .sd-bg-primary {
+  background-color: #1a3a2a !important;
+}
+html[data-theme="dark"] .sd-bg-secondary {
+  background-color: #1a3a2a !important;
+}
+html[data-theme="dark"] .sd-bg-success {
+  background-color: #1a3a2a !important;
+}
+html[data-theme="dark"] .sd-bg-info {
+  background-color: #1a2a3a !important;
+}
+html[data-theme="dark"] .sd-bg-warning {
+  background-color: #3a2a1a !important;
+}
+html[data-theme="dark"] .sd-bg-danger {
+  background-color: #3a1a1a !important;
+}
+
+/* sphinx_design tabs */
+html[data-theme="dark"] .sd-tab-set > label {
+  color: var(--cl-text-secondary);
+  border-bottom-color: transparent;
+}
+html[data-theme="dark"] .sd-tab-set > input:checked + label {
+  color: var(--cl-accent);
+  border-bottom-color: var(--cl-accent);
+}
+html[data-theme="dark"] .sd-tab-content {
+  background: var(--cl-bg-secondary);
+  border-color: var(--cl-border);
+}
+
+/* ── Event spans ───────────────────────────────────────────────────── */
+html[data-theme="dark"] p span.event {
+  background-color: rgba(30, 32, 48, 0.8);
+  border-color: var(--cl-border);
+}
+
+/* ── Copy button ────────────────────────────────────────────────────── */
+html[data-theme="dark"] button.copybtn {
+  color: var(--cl-text-muted);
+}
+html[data-theme="dark"] button.copybtn:hover {
+  color: var(--cl-text);
+}
+
+/* ── Keyboard shortcuts modal ──────────────────────────────────────── */
+html[data-theme="dark"] .cl-modal {
+  background: var(--cl-bg-secondary);
+  border-color: var(--cl-border);
+}
+html[data-theme="dark"] .cl-modal-header {
+  border-bottom-color: var(--cl-border);
+}
+
+/* ── Feedback widget ───────────────────────────────────────────────── */
+html[data-theme="dark"] .feedback-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+html[data-theme="dark"] .feedback-details textarea {
+  background: var(--cl-bg-tertiary);
+  border-color: var(--cl-border);
+  color: var(--cl-text);
+}
+html[data-theme="dark"] .feedback-skip {
+  border-color: var(--cl-border);
+  color: var(--cl-text-secondary);
+}
+html[data-theme="dark"] .feedback-skip:hover {
+  border-color: var(--cl-text-muted);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* ── Search ────────────────────────────────────────────────────────── */
+html[data-theme="dark"] .cl-search-input {
+  background: rgba(255,255,255,0.08);
+  color: var(--cl-header-text);
+  border-color: rgba(255,255,255,0.15);
+}
+
+/* ── Right-side TOC ────────────────────────────────────────────────── */
+html[data-theme="dark"] .cl-toc {
+  background: var(--cl-bg);
+}
+html[data-theme="dark"] .cl-toc .cl-localtoc-link,
+html[data-theme="dark"] .cl-toc a.cl-localtoc-link {
+  color: rgba(255, 255, 255, 0.6);
+}
+html[data-theme="dark"] .cl-toc .cl-localtoc-link:hover,
+html[data-theme="dark"] .cl-toc a.cl-localtoc-link:hover {
+  color: #fff;
+}
+html[data-theme="dark"] .cl-toc .cl-localtoc-link--active,
+html[data-theme="dark"] .cl-toc a.cl-localtoc-link--active {
+  color: var(--cl-accent) !important;
+}
+
+/* ── Catch-all for md-typeset text ─────────────────────────────────── */
+html[data-theme="dark"] .md-typeset {
+  color: var(--cl-text);
+}
+
+html[data-theme="dark"] .md-typeset h5 {
+  color: var(--cl-text-secondary);
+}
+
+/* ── Summary chevron color ─────────────────────────────────────────── */
+html[data-theme="dark"] .md-typeset summary:after {
+  color: rgba(255,255,255,0.2);
+}
+
+/* ── Selection ──────────────────────────────────────────────────────── */
+html[data-theme="dark"] ::selection {
+  background: rgba(96, 165, 250, 0.3);
+}
+
+/* ── Chat (homepage embed + sidebar panel) ─────────────────────────── */
+html[data-theme="dark"] .cl-chat-embed {
+  background: var(--cl-bg-secondary);
+  border-color: var(--cl-border);
+}
+html[data-theme="dark"] .cl-chat-input-wrap--home {
+  background: var(--cl-bg);
+}
+html[data-theme="dark"] .cl-chat-input {
+  color: var(--cl-text);
+}
+html[data-theme="dark"] .cl-chat-input::placeholder {
+  color: var(--cl-text-muted);
+}
+html[data-theme="dark"] .cl-chat-input-wrap {
+  background: var(--cl-bg);
+  border-color: var(--cl-border);
+}
+html[data-theme="dark"] .cl-chat-msg--bot {
+  background: var(--cl-bg-tertiary);
+  border-color: var(--cl-border);
+  color: var(--cl-text);
+}
+html[data-theme="dark"] .cl-chat-code {
+  background: var(--cl-bg-code);
+  border-color: var(--cl-border);
+}
+html[data-theme="dark"] .cl-chat-inline-code {
+  background: var(--cl-bg-code);
+}
+html[data-theme="dark"] .cl-chat-panel {
+  background: var(--cl-bg);
+  border-left-color: var(--cl-border);
+}
+html[data-theme="dark"] .cl-chat-panel-header {
+  border-bottom-color: var(--cl-border);
+}
+html[data-theme="dark"] .cl-chat-input-form {
+  border-top-color: var(--cl-border);
+}
+html[data-theme="dark"] .cl-chat-sources {
+  border-top-color: var(--cl-border);
+}
+html[data-theme="dark"] .cl-chat-prompt-hint {
+  background: var(--cl-bg-tertiary);
+  border-color: var(--cl-border);
+  color: var(--cl-text-secondary);
+}
+html[data-theme="dark"] .cl-chat-prompt-hint:hover {
+  border-color: var(--cl-accent);
+  color: var(--cl-accent);
+  background: var(--cl-accent-subtle);
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────────────── */
+html[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: var(--cl-bg);
+}
+html[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: var(--cl-border);
+}

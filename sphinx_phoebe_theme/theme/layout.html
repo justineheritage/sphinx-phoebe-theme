@@ -1,0 +1,302 @@
+{# Sphinx Phoebe Theme — Base Layout #}
+{%- set url_root = pathto('', 1) %}
+{%- if url_root == '#' %}{% set url_root = '' %}{% endif %}
+
+{# Provide defaults for variables that may be undefined on special pages (404, genindex…) #}
+{%- set title       = title|default('') %}
+{%- set style       = style|default('css/theme.css') %}
+{%- set titlesuffix = titlesuffix|default('') %}
+{%- set docstitle   = docstitle|default('') %}
+{%- set shorttitle  = shorttitle|default('') %}
+{%- set pagename    = pagename|default('') %}
+{%- set master_doc  = master_doc|default('index') %}
+{%- set language    = language|default('en') %}
+{%- set metatags    = metatags|default('') %}
+{%- set body        = body|default('') %}
+{%- set toc         = toc|default('') %}
+{%- set display_toc = display_toc|default(false) %}
+{%- set logo_url    = logo_url|default('') %}
+{%- set favicon_url = favicon_url|default('') %}
+{%- set show_copyright = show_copyright|default(true) %}
+{%- set copyright   = copyright|default('') %}
+{%- set css_files   = css_files|default([]) %}
+{%- set script_files = script_files|default([]) %}
+{%- set prev        = prev|default(none) %}
+{%- set next        = next|default(none) %}
+
+{%- if docstitle %}
+  {%- set titlesuffix = ' &mdash; ' + docstitle|e %}
+{%- endif %}
+<!DOCTYPE html>
+<html lang="{{ language or 'en' }}" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  {%- block metatags %}
+  {{ metatags }}
+  {%- endblock %}
+
+  <title>{% block title %}{{ title|striptags|e }}{{ titlesuffix }}{% endblock %}</title>
+
+  {# Web fonts #}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+
+  {# Theme CSS
+       Load order matters!  Sphinx auto-adds theme.css, pygments, extension
+       CSS (sphinx_design, copybutton…) and project CSS (local.css) via
+       css_files.  We let those load first, then layer our structural /
+       component / dark-mode overrides on top so they always win.
+  #}
+  {%- block css %}
+  {# 1. Sphinx-managed files: theme.css, pygments, extensions, local.css #}
+  {%- for css in css_files %}
+    {%- if css|attr("filename") %}
+    {{ css_tag(css) }}
+    {%- else %}
+    <link rel="stylesheet" type="text/css" href="{{ pathto(css, 1) }}" />
+    {%- endif %}
+  {%- endfor %}
+  {# 2. Theme structural & component overrides (loaded AFTER extension CSS) #}
+  <link rel="stylesheet" type="text/css" href="{{ pathto('_static/css/sidebar.css', 1) }}" />
+  <link rel="stylesheet" type="text/css" href="{{ pathto('_static/css/chat.css', 1) }}" />
+  <link rel="stylesheet" type="text/css" href="{{ pathto('_static/css/components.css', 1) }}" />
+  <link rel="stylesheet" type="text/css" href="{{ pathto('_static/css/search.css', 1) }}" />
+  <link rel="stylesheet" type="text/css" href="{{ pathto('_static/css/feedback.css', 1) }}" />
+  {# 3. Dark mode — MUST be last to override everything above #}
+  <link rel="stylesheet" type="text/css" href="{{ pathto('_static/css/dark.css', 1) }}" />
+  {%- endblock %}
+
+  {%- block extrahead %}{% endblock %}
+
+  {%- if favicon_url %}
+  <link rel="shortcut icon" href="{{ favicon_url }}" />
+  {%- endif %}
+
+  {# Prevent flash of wrong theme #}
+  <script>
+    (function(){
+      var s = localStorage.getItem('cl-theme');
+      if (s === 'dark' || (!s && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+
+  {# Inject theme configuration for chat and feedback widgets #}
+  <script>
+    window.SPHINX_PHOEBE_THEME = {
+      chat: {
+        enabled: {{ theme_chat_enabled|default('false')|tojson }},
+        provider: {{ theme_chat_provider|default('runllm')|tojson }},
+        apiKey: {{ theme_chat_api_key|default('')|tojson }},
+        pipelineId: {{ theme_chat_pipeline_id|default('null')|int if theme_chat_pipeline_id else 'null' }},
+        apiUrl: {{ theme_chat_api_url|default('')|tojson }}
+      },
+      feedback: {
+        enabled: {{ theme_feedback_enabled|default('false')|tojson }},
+        provider: {{ theme_feedback_provider|default('formspree')|tojson }},
+        formspreeId: {{ theme_feedback_formspree_id|default('')|tojson }}
+      },
+      analytics: {
+        googleId: {{ theme_google_analytics_account|default('')|tojson }}
+      }
+    };
+  </script>
+</head>
+
+<body class="cl-body{% if pagename == master_doc %} cl-body--home{% endif %}">
+
+  <a class="cl-skip-link" href="#main-content">Skip to content</a>
+
+  {# ── Header ────────────────────────────────────────────────────────── #}
+  {%- block header %}
+  {% include "header.html" %}
+  {%- endblock %}
+
+  {# ── Three-column layout ───────────────────────────────────────────── #}
+  <div class="cl-layout" id="cl-layout">
+
+    {# ── Left sidebar ──────────────────────────────────────────────── #}
+    {%- block sidebar %}
+    <aside class="cl-sidebar" id="cl-sidebar" aria-label="Main navigation">
+      <div class="cl-sidebar-scroll">
+        {% include "sidebar.html" %}
+      </div>
+    </aside>
+    <div class="cl-sidebar-backdrop" id="cl-sidebar-backdrop"></div>
+    {%- endblock %}
+
+    {# ── Main content ──────────────────────────────────────────────── #}
+    <main class="cl-main" id="main-content">
+      <div class="cl-content">
+        {%- block content %}
+        <article class="cl-article md-typeset" role="main">
+          {%- block document %}
+          {{ body }}
+          {%- endblock %}
+        </article>
+
+        {# ── Homepage: minimal AI chat (JS moves below h1) ─────── #}
+        {%- if pagename == master_doc %}
+        <div class="cl-chat-embed" id="cl-chat-embed">
+          <div class="cl-chat-embed-header" id="cl-chat-embed-header">
+            <button class="cl-chat-clear-btn cl-chat-clear-btn--home" id="cl-chat-clear-home"
+                    title="Clear chat history" aria-label="Clear chat">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                   stroke-linejoin="round">
+                <polyline points="3 6 5 6 21 6"/>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+              </svg>
+              Clear chat
+            </button>
+          </div>
+          <div class="cl-chat-messages" id="cl-chat-home-messages"></div>
+          <form class="cl-chat-input-form cl-chat-input-form--home" id="cl-chat-home-form" autocomplete="off">
+            <div class="cl-chat-input-wrap cl-chat-input-wrap--home">
+              <svg class="cl-chat-input-icon" width="16" height="16" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+              <input type="text" class="cl-chat-input" id="cl-chat-home-input"
+                     placeholder="Ask documentation assistant"
+                     aria-label="Ask a question">
+              <button type="submit" class="cl-chat-send-btn" aria-label="Send">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                     stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"/>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+              </button>
+            </div>
+            <div class="cl-chat-prompt-hints">
+              <button type="button" class="cl-chat-prompt-hint" data-question="How do I get started?">Getting started</button>
+              <button type="button" class="cl-chat-prompt-hint" data-question="How do I configure this?">Configuration</button>
+              <button type="button" class="cl-chat-prompt-hint" data-question="What are the main features?">Features</button>
+            </div>
+          </form>
+        </div>
+        {%- endif %}
+
+        {%- endblock %}
+
+        {%- block footer %}
+        {% include "footer.html" %}
+        {%- endblock %}
+      </div>
+    </main>
+
+    {# ── Right TOC (on-this-page) ──────────────────────────────────── #}
+    {%- block toc_sidebar %}
+    {%- if display_toc and toc and pagename != master_doc %}
+    <aside class="cl-toc" id="cl-toc" aria-label="On this page">
+      {% include "localtoc.html" %}
+    </aside>
+    {%- endif %}
+    {%- endblock %}
+
+    {# ── Sidebar chat panel (non-index pages) ─────────────────────── #}
+    {%- if pagename != master_doc %}
+    <aside class="cl-chat-panel" id="cl-chat-panel" aria-label="AI Chat">
+      <div class="cl-chat-drag" id="cl-chat-drag" title="Drag to resize"></div>
+      <div class="cl-chat-panel-header">
+        <span class="cl-chat-panel-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          Ask AI
+        </span>
+        <div class="cl-chat-panel-actions">
+          <button class="cl-chat-clear-btn" id="cl-chat-clear"
+                  title="Clear chat history" aria-label="Clear chat">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                 stroke-linejoin="round">
+              <polyline points="3 6 5 6 21 6"/>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+            </svg>
+          </button>
+          <button class="cl-chat-panel-close" id="cl-chat-close"
+                  aria-label="Close chat">&times;</button>
+        </div>
+      </div>
+      <div class="cl-chat-messages" id="cl-chat-sidebar-messages">
+        <div class="cl-chat-welcome cl-chat-welcome--compact">
+          <p class="cl-chat-welcome-desc">Ask questions about the documentation</p>
+        </div>
+      </div>
+      <form class="cl-chat-input-form" id="cl-chat-sidebar-form" autocomplete="off">
+        <div class="cl-chat-input-wrap">
+          <input type="text" class="cl-chat-input" id="cl-chat-sidebar-input"
+                 placeholder="Ask a question…"
+                 aria-label="Ask a question">
+          <button type="submit" class="cl-chat-send-btn" aria-label="Send">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                 stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+          </button>
+        </div>
+      </form>
+    </aside>
+    {%- endif %}
+
+  </div>
+
+  {# ── Keyboard-shortcuts modal ──────────────────────────────────── #}
+  <div class="cl-modal-backdrop" id="cl-shortcuts-backdrop" style="display:none"></div>
+  <div class="cl-modal" id="cl-shortcuts-modal" style="display:none"
+       role="dialog" aria-label="Keyboard shortcuts">
+    <div class="cl-modal-header">
+      <h3>Keyboard Shortcuts</h3>
+      <button class="cl-modal-close" id="cl-shortcuts-close"
+              aria-label="Close">&times;</button>
+    </div>
+    <div class="cl-modal-body">
+      <table class="cl-shortcuts-table">
+        <tr><td><kbd>/</kbd></td><td>Focus search</td></tr>
+        <tr><td><kbd>[</kbd></td><td>Toggle sidebar</td></tr>
+        <tr><td><kbd>?</kbd></td><td>Show shortcuts</td></tr>
+        <tr><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd></td><td>Previous / Next page</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>Close panel or modal</td></tr>
+      </table>
+    </div>
+  </div>
+
+  {# ── Scripts ───────────────────────────────────────────────────── #}
+  {%- block scripts %}
+  {%- for scriptfile in script_files %}
+    {{ js_tag(scriptfile) }}
+  {%- endfor %}
+  <script src="{{ pathto('_static/js/theme.js', 1) }}"></script>
+  <script src="{{ pathto('_static/js/dark-mode.js', 1) }}"></script>
+  <script src="{{ pathto('_static/js/sidebar.js', 1) }}"></script>
+  <script src="{{ pathto('_static/js/chat.js', 1) }}"></script>
+  <script src="{{ pathto('_static/js/keyboard.js', 1) }}"></script>
+  {%- endblock %}
+
+  {%- block extra_scripts %}{% endblock %}
+
+  {# ── Analytics ─────────────────────────────────────────────────── #}
+  {%- if theme_google_analytics_account %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ theme_google_analytics_account }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ theme_google_analytics_account }}');
+  </script>
+  {%- endif %}
+</body>
+</html>

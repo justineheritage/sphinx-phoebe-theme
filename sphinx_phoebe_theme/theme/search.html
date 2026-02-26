@@ -1,0 +1,60 @@
+{# Sphinx Phoebe Theme — Search Results Page #}
+{%- extends "layout.html" %}
+{% set title = _('Search') %}
+
+{%- block extrahead %}
+  <script src="{{ pathto('searchindex.js', 1) }}" defer></script>
+  <meta name="robots" content="noindex" />
+  {{ super() }}
+{%- endblock %}
+
+{%- block scripts %}
+  {{ super() }}
+  {# Load Lunr.js first #}
+  <script src="{{ pathto('_static/js/lunr.min.js', 1) }}"></script>
+  {# Load new search modules #}
+  <script src="{{ pathto('_static/js/search/SearchEngine.js', 1) }}"></script>
+  <script src="{{ pathto('_static/js/search/SearchMetadata.js', 1) }}"></script>
+  {# Load main search tools (depends on SearchEngine and SearchMetadata) #}
+  <script src="{{ pathto('_static/js/clSearchTools.js', 1) }}"></script>
+  <script src="{{ pathto('_static/js/clAdvancedSearch.js', 1) }}"></script>
+  <script src="{{ pathto('_static/language_data.js', 1) }}"></script>
+{%- endblock %}
+
+{%- block content %}
+<div class="cl-search-page">
+  <h1 id="search-documentation">{{ _('Search results') }}</h1>
+  <div id="search-progress" class="cl-search-loading" style="display: none;">
+    <div class="cl-search-spinner"></div>
+    <p>Searching...</p>
+  </div>
+
+  <div class="cl-search-layout">
+    <div class="cl-search-results" id="search-results">
+      {# Results injected by JS #}
+    </div>
+    <div class="cl-search-filters">
+      <div id="filters" class="search-filter"></div>
+    </div>
+  </div>
+
+  {# Empty state (hidden by default, shown by JS when no results) #}
+  <div id="search-empty" class="cl-search-empty" style="display: none;">
+    <svg class="cl-search-empty-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.35-4.35"></path>
+    </svg>
+    <h3>No results found</h3>
+    <p>We couldn't find any matches for your search.</p>
+    <div class="cl-search-empty-tips">
+      <strong>Try:</strong>
+      <ul>
+        <li>Using different keywords</li>
+        <li>Checking your spelling</li>
+        <li>Using more general terms</li>
+        <li>Browsing the <a href="index.html">documentation index</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+{%- endblock %}

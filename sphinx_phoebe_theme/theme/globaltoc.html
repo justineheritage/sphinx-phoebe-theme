@@ -1,0 +1,56 @@
+{# Sphinx Phoebe Theme — Global Table of Contents #}
+{% if toctree is defined and toctree is callable %}
+{% set toctree_html = toctree(maxdepth=theme_globaltoc_depth|toint,
+                               collapse=theme_globaltoc_collapse|tobool,
+                               includehidden=theme_globaltoc_includehidden|tobool,
+                               titles_only=True) %}
+{% else %}
+{% set toctree_html = '' %}
+{% endif %}
+{% if toctree_html %}
+  {% set toctree_nodes = derender_toc(toctree_html, False) %}
+  <ul class="cl-nav-list cl-nav-list--root">
+  {%- for item in toctree_nodes recursive %}
+    {%- if "caption" in item %}
+    <li class="cl-nav-caption">{{ item.caption }}</li>
+    {%- else %}
+    {# Resolve display name via sidebar_display_name extension #}
+    {%- set display_text = item.contents -%}
+    {%- if get_display_name is defined and get_display_name -%}
+      {%- set docname = '' -%}
+      {%- if item.href == '#' -%}
+        {%- set docname = pagename -%}
+      {%- elif item.href -%}
+        {%- set docname = item.href.split('#')[0].rstrip('/').replace('.html', '') -%}
+        {%- if docname.startswith('./') -%}
+          {%- set docname = docname[2:] -%}
+        {%- endif -%}
+      {%- endif -%}
+      {%- set custom_display = get_display_name(docname) -%}
+      {%- if custom_display -%}
+        {%- set display_text = custom_display -%}
+      {%- endif -%}
+    {%- endif -%}
+
+    <li class="cl-nav-item{% if item.current %} cl-nav-item--active{% endif %}{% if item.children %} cl-nav-item--parent{% endif %}">
+      <a href="{{ item.href|e }}"
+         class="cl-nav-link{% if item.current %} cl-nav-link--active{% endif %}">
+        {{ display_text }}
+      </a>
+      {%- if item.children %}
+      <button class="cl-nav-toggle" aria-label="Expand section"
+              aria-expanded="{{ 'true' if item.current else 'false' }}">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2.5">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </button>
+      <ul class="cl-nav-list cl-nav-list--nested{% if item.current %} cl-nav-list--expanded{% endif %}">
+        {{ loop(item.children) }}
+      </ul>
+      {%- endif %}
+    </li>
+    {%- endif %}
+  {%- endfor %}
+  </ul>
+{% endif %}

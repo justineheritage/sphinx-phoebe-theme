@@ -1,0 +1,75 @@
+{# Sphinx Phoebe Theme — Top Header Bar #}
+<header class="cl-header" data-component="header">
+  <nav class="cl-header-nav">
+
+    {# Mobile sidebar toggle #}
+    <button class="cl-header-btn cl-sidebar-toggle" id="cl-sidebar-toggle"
+            aria-label="Toggle navigation" title="Toggle sidebar">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+
+    {# Logo + title #}
+    <a class="cl-header-brand" href="{{ pathto(master_doc)|e }}"
+       title="{{ docstitle|striptags|e }}">
+      {%- if logo_url %}
+      <img class="cl-header-logo" src="{{ logo_url }}" alt="Logo" height="28">
+      {%- endif %}
+      <span class="cl-header-title">{{ theme_nav_title or shorttitle }}</span>
+    </a>
+
+    {# Spacer #}
+    <div class="cl-header-spacer"></div>
+
+    {# Search #}
+    <div class="cl-header-search" id="cl-header-search">
+      {% include "searchbox.html" %}
+    </div>
+
+    {# Dark-mode toggle #}
+    <button class="cl-header-btn cl-theme-toggle" id="cl-theme-toggle"
+            aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="cl-icon-sun" width="20" height="20" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/>
+        <line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/>
+        <line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+      <svg class="cl-icon-moon" width="20" height="20" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+
+    {# AI chat button — toggles sidebar chat / focuses homepage input #}
+    <button class="cl-header-btn cl-chat-toggle cl-chat-toggle--labelled"
+            id="cl-chat-toggle"
+            aria-label="Ask AI" title="Ask AI">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round"
+           stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+      <span class="cl-chat-toggle-label">Ask AI</span>
+    </button>
+
+    {# Keyboard shortcuts hint #}
+    <button class="cl-header-btn cl-shortcuts-btn" id="cl-shortcuts-btn"
+            aria-label="Keyboard shortcuts" title="Keyboard shortcuts (?)">
+      <kbd>?</kbd>
+    </button>
+
+  </nav>
+</header>

@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sphinx-phoebe-theme"
+version = "0.1.0"
+description = "Modern, responsive Sphinx theme with AI chat and feedback widgets"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Justine Heritage", email = "justineheritage@users.noreply.github.com"}
+]
+keywords = ["sphinx", "theme", "documentation", "ai", "chat"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Framework :: Sphinx",
+    "Framework :: Sphinx :: Theme",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Documentation",
+    "Topic :: Documentation :: Sphinx",
+    "Topic :: Software Development :: Documentation",
+]
+dependencies = [
+    "sphinx>=4.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/justineheritage/sphinx-phoebe-theme"
+Repository = "https://github.com/justineheritage/sphinx-phoebe-theme"
+Issues = "https://github.com/justineheritage/sphinx-phoebe-theme/issues"
+
+[project.entry-points."sphinx.html_themes"]
+sphinx_phoebe_theme = "sphinx_phoebe_theme"
+
+[tool.setuptools.packages.find]
+include = ["sphinx_phoebe_theme*"]
+
+[tool.setuptools.package-data]
+sphinx_phoebe_theme = [
+    "theme/*.html",
+    "theme/*.conf",
+    "theme/static/css/*.css",
+    "theme/static/js/*.js",
+    "extensions/*.py",
+]

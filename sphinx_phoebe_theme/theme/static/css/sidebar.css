@@ -1,0 +1,351 @@
+/* =====================================================================
+   Sphinx Phoebe Theme — Sidebar
+   ===================================================================== */
+
+/* ── Sidebar container ──────────────────────────────────────────────── */
+.cl-sidebar {
+  position: fixed;
+  top: var(--cl-header-height);
+  left: 0;
+  bottom: 0;
+  width: var(--cl-sidebar-width);
+  background: var(--cl-sidebar-bg);
+  border-right: 1px solid var(--cl-sidebar-border);
+  z-index: 800;
+  overflow: hidden;
+  transition: transform 0.25s ease, width 0.25s ease;
+  will-change: transform;
+}
+
+.cl-sidebar-scroll {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--cl-sp-4) 0 var(--cl-sp-8);
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--cl-border) transparent;
+}
+.cl-sidebar-scroll::-webkit-scrollbar { width: 4px; }
+.cl-sidebar-scroll::-webkit-scrollbar-track { background: transparent; }
+.cl-sidebar-scroll::-webkit-scrollbar-thumb {
+  background: var(--cl-border);
+  border-radius: 4px;
+}
+
+/* Mobile backdrop */
+.cl-sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 799;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(2px);
+}
+
+/* Collapsed state */
+.cl-sidebar--collapsed .cl-sidebar {
+  transform: translateX(-100%);
+}
+.cl-sidebar--collapsed .cl-main {
+  margin-left: 0;
+}
+
+/* Adjust main content for sidebar */
+.cl-main {
+  margin-left: var(--cl-sidebar-width);
+  transition: margin-left 0.25s ease;
+}
+
+/* ── Navigation ─────────────────────────────────────────────────────── */
+.cl-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.cl-nav-title {
+  display: none; /* Shown only on mobile */
+  align-items: center;
+  gap: var(--cl-sp-2);
+  padding: var(--cl-sp-3) var(--cl-sp-4);
+  margin-bottom: var(--cl-sp-2);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--cl-text);
+  text-decoration: none;
+}
+.cl-nav-title:hover { text-decoration: none; color: var(--cl-text); }
+.cl-nav-logo { height: 24px; width: auto; }
+
+.cl-nav-divider {
+  border: none;
+  border-top: 1px solid var(--cl-border-light);
+  margin: var(--cl-sp-2) var(--cl-sp-4);
+}
+
+/* ── Nav list ───────────────────────────────────────────────────────── */
+.cl-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cl-nav-list--root { padding: 0 var(--cl-sp-2); }
+
+.cl-nav-list--nested {
+  display: none;
+  padding-left: var(--cl-sp-3);
+}
+.cl-nav-list--expanded { display: block; }
+
+/* ── Nav item ───────────────────────────────────────────────────────── */
+.cl-nav-item {
+  position: relative;
+}
+
+.cl-nav-item--parent {
+  display: flex;
+  flex-wrap: wrap;
+}
+.cl-nav-item--parent > .cl-nav-link {
+  flex: 1;
+  min-width: 0;
+}
+.cl-nav-item--parent > .cl-nav-list {
+  flex-basis: 100%;
+}
+
+/* ── Nav caption ────────────────────────────────────────────────────── */
+.cl-nav-caption {
+  padding: var(--cl-sp-4) var(--cl-sp-4) var(--cl-sp-1);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cl-text-muted);
+  user-select: none;
+}
+
+/* ── Nav link ───────────────────────────────────────────────────────── */
+.cl-nav-link,
+.cl-sidebar a.cl-nav-link {
+  display: block;
+  padding: var(--cl-sp-1) var(--cl-sp-4) var(--cl-sp-1) var(--cl-sp-3);
+  font-size: 0.85rem;
+  color: var(--cl-text-secondary);
+  text-decoration: none;
+  border-radius: var(--cl-radius-md);
+  transition: all var(--cl-ease);
+  line-height: 1.5;
+  word-break: break-word;
+}
+.cl-nav-link:hover,
+.cl-sidebar a.cl-nav-link:hover {
+  color: var(--cl-text);
+  background: var(--cl-bg-tertiary);
+  text-decoration: none;
+}
+.cl-nav-link--active {
+  color: var(--cl-accent) !important;
+  font-weight: 600;
+  background: var(--cl-accent-subtle);
+}
+.cl-nav-link--active:hover {
+  background: var(--cl-accent-subtle);
+}
+
+/* External link indicator */
+.cl-nav-link--external {
+  display: flex;
+  align-items: center;
+  gap: var(--cl-sp-1);
+}
+.cl-external-icon {
+  flex-shrink: 0;
+  opacity: 0.5;
+}
+
+/* ── Toggle button (expand/collapse children) ───────────────────────── */
+.cl-nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--cl-text-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  border-radius: var(--cl-radius-sm);
+  transition: all var(--cl-ease);
+}
+.cl-nav-toggle:hover {
+  color: var(--cl-text);
+  background: var(--cl-bg-tertiary);
+}
+.cl-nav-toggle svg {
+  transition: transform 0.2s ease;
+}
+.cl-nav-toggle[aria-expanded="true"] svg {
+  transform: rotate(90deg);
+}
+
+/* ── Help links ─────────────────────────────────────────────────────── */
+.cl-nav-help {
+  padding: 0 var(--cl-sp-2);
+}
+.cl-nav-help .cl-nav-link,
+.cl-sidebar .cl-nav-help a.cl-nav-link {
+  font-size: 0.8rem;
+  color: var(--cl-text-muted);
+}
+.cl-nav-help .cl-nav-link:hover,
+.cl-sidebar .cl-nav-help a.cl-nav-link:hover {
+  color: var(--cl-text-secondary);
+}
+
+/* ── Local TOC (on this page) ───────────────────────────────────────── */
+.cl-localtoc {
+  padding: var(--cl-sp-3) var(--cl-sp-2);
+  margin-top: var(--cl-sp-2);
+  border-top: 1px solid var(--cl-border-light);
+}
+
+.cl-localtoc-title {
+  padding: 0 var(--cl-sp-3);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cl-text-muted);
+  margin: 0 0 var(--cl-sp-1);
+}
+
+.cl-localtoc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cl-localtoc-list--nested {
+  padding-left: var(--cl-sp-3);
+}
+
+.cl-localtoc-link {
+  display: block;
+  padding: 2px var(--cl-sp-3);
+  font-size: 0.78rem;
+  color: var(--cl-text-muted);
+  text-decoration: none;
+  border-radius: var(--cl-radius-sm);
+  transition: all var(--cl-ease);
+  line-height: 1.5;
+}
+.cl-localtoc-link:hover {
+  color: var(--cl-text-secondary);
+  background: var(--cl-bg-tertiary);
+  text-decoration: none;
+}
+
+/* =====================================================================
+   Right-side TOC (on-this-page)
+   ===================================================================== */
+
+.cl-toc {
+  position: fixed;
+  top: var(--cl-header-height);
+  right: 0;
+  bottom: 0;
+  width: 220px;
+  padding: var(--cl-sp-6) var(--cl-sp-4) var(--cl-sp-8) var(--cl-sp-2);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--cl-border) transparent;
+  z-index: 100;
+}
+
+.cl-toc::-webkit-scrollbar { width: 3px; }
+.cl-toc::-webkit-scrollbar-track { background: transparent; }
+.cl-toc::-webkit-scrollbar-thumb {
+  background: var(--cl-border);
+  border-radius: 3px;
+}
+
+/* Ensure main content doesn't overlap right TOC on wide screens */
+@media (min-width: 1280px) {
+  .cl-main {
+    margin-right: 220px;
+  }
+}
+
+/* When the TOC is present, move the localtoc title styling */
+.cl-toc .cl-localtoc {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.cl-toc .cl-localtoc-title {
+  padding-left: var(--cl-sp-1);
+  margin-bottom: var(--cl-sp-2);
+}
+
+.cl-toc .cl-localtoc-link,
+.cl-toc a.cl-localtoc-link {
+  padding: 2px var(--cl-sp-2);
+  font-size: 0.76rem;
+  border-left: 2px solid transparent;
+  border-radius: 0;
+  color: var(--cl-text-secondary);
+  transition: all var(--cl-ease);
+}
+
+.cl-toc .cl-localtoc-link:hover,
+.cl-toc a.cl-localtoc-link:hover {
+  border-left-color: var(--cl-border);
+  background: transparent;
+  color: var(--cl-text);
+}
+
+.cl-toc .cl-localtoc-link--active,
+.cl-toc a.cl-localtoc-link--active {
+  border-left-color: var(--cl-accent);
+  color: var(--cl-accent) !important;
+  font-weight: 500;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────── */
+
+/* Hide right TOC on narrow screens */
+@media (max-width: 1279px) {
+  .cl-toc { display: none; }
+}
+
+/* Tablet: sidebar collapse by default */
+@media (max-width: 960px) {
+  .cl-sidebar {
+    transform: translateX(-100%);
+  }
+  .cl-main {
+    margin-left: 0;
+  }
+  .cl-sidebar--open .cl-sidebar {
+    transform: translateX(0);
+  }
+  .cl-sidebar--open .cl-sidebar-backdrop {
+    display: block;
+  }
+  .cl-nav-title {
+    display: flex;
+  }
+}
+
+/* Desktop: sidebar always visible unless collapsed */
+@media (min-width: 961px) {
+  .cl-sidebar-toggle {
+    /* Still visible for toggling sidebar, but smaller */
+  }
+}

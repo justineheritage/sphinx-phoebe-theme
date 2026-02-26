@@ -1,0 +1,91 @@
+{# Sphinx Phoebe Theme — Footer with Feedback Bar #}
+<footer class="cl-footer">
+
+  {# ── Prev / Next navigation ─────────────────────────────────────── #}
+  {%- if prev or next %}
+  <nav class="cl-page-nav" aria-label="Page navigation">
+    {%- if prev %}
+    <a class="cl-page-nav-link cl-page-nav-link--prev"
+       href="{{ prev.link|e }}" rel="prev"
+       title="{{ prev.title|striptags|e }}">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      <span>{{ prev.title|striptags }}</span>
+    </a>
+    {%- else %}<span></span>{%- endif %}
+    {%- if next %}
+    <a class="cl-page-nav-link cl-page-nav-link--next"
+       href="{{ next.link|e }}" rel="next"
+       title="{{ next.title|striptags|e }}">
+      <span>{{ next.title|striptags }}</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    {%- else %}<span></span>{%- endif %}
+  </nav>
+  {%- endif %}
+
+  {# ── Per-page feedback ──────────────────────────────────────────── #}
+  <div class="feedback-bar" id="feedback-bar">
+    <div class="feedback-container">
+
+      {# Initial prompt #}
+      <div class="feedback-prompt" id="feedback-prompt">
+        <span class="feedback-question">Was this page helpful?</span>
+        <div class="feedback-buttons">
+          <button class="feedback-btn feedback-btn-yes" id="feedback-yes"
+                  aria-label="Yes, this page was helpful" title="Yes">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M2 20h2c.55 0 1-.45 1-1v-9c0-.55-.45-1-1-1H2v11zm19.83-7.12c.11-.25.17-.52.17-.8V11c0-1.1-.9-2-2-2h-5.5l.92-4.65c.05-.22.02-.46-.08-.66-.23-.45-.52-.86-.88-1.22L14 2 7.59 8.41C7.21 8.79 7 9.3 7 9.83v7.84C7 18.95 8.05 20 9.34 20h8.11c.7 0 1.36-.37 1.72-.97l2.66-6.15z"/>
+            </svg>
+          </button>
+          <button class="feedback-btn feedback-btn-no" id="feedback-no"
+                  aria-label="No, this page was not helpful" title="No">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M22 4h-2c-.55 0-1 .45-1 1v9c0 .55.45 1 1 1h2V4zM2.17 11.12c-.11.25-.17.52-.17.8V13c0 1.1.9 2 2 2h5.5l-.92 4.65c-.05.22-.02.46.08.66.23.45.52.86.88 1.22L10 22l6.41-6.41c.38-.38.59-.89.59-1.42V6.34C17 5.05 15.95 4 14.66 4H6.55c-.7 0-1.36.37-1.72.97l-2.66 6.15z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {# Comment form (hidden) #}
+      <div class="feedback-form" id="feedback-form" style="display:none">
+        <div class="feedback-thanks" id="feedback-thanks">
+          <span class="feedback-thanks-text"></span>
+        </div>
+        <div class="feedback-details" id="feedback-details">
+          <label for="feedback-text">Tell us more (optional):</label>
+          <textarea id="feedback-text" placeholder="What could we improve?" rows="3"></textarea>
+          <div class="feedback-form-actions">
+            <button class="feedback-submit" id="feedback-submit">Send comment</button>
+            <button class="feedback-skip" id="feedback-skip">No thanks</button>
+          </div>
+        </div>
+      </div>
+
+      {# Completion state (hidden) #}
+      <div class="feedback-complete" id="feedback-complete" style="display:none">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+             width="24" height="24" fill="currentColor">
+          <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+        </svg>
+        <span>Thank you for your feedback!</span>
+      </div>
+
+      {# Already-submitted state (hidden) #}
+      <div class="feedback-already" id="feedback-already" style="display:none">
+        <span class="feedback-already-text">You already submitted feedback for this page.</span>
+        <button class="feedback-already-link" id="feedback-again">Add more?</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ pathto('_static/js/feedback.js', 1) }}"></script>
+
+  {# ── Copyright ──────────────────────────────────────────────────── #}
+  {%- if show_copyright %}
+  <div class="cl-copyright">
+    <p>{{ copyright }}</p>
+  </div>
+  {%- endif %}
+</footer>
