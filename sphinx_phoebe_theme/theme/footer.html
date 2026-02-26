@@ -26,6 +26,7 @@
   {%- endif %}
 
   {# ── Per-page feedback ──────────────────────────────────────────── #}
+  {%- if theme_feedback_enabled %}
   <div class="feedback-bar" id="feedback-bar">
     <div class="feedback-container">
 
@@ -81,6 +82,7 @@
   </div>
 
   <script src="{{ pathto('_static/js/feedback.js', 1) }}"></script>
+  {%- endif %}
 
   {# ── Copyright ──────────────────────────────────────────────────── #}
   {%- if show_copyright %}
