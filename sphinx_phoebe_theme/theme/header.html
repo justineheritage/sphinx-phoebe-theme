@@ -54,6 +54,7 @@
     </button>
 
     {# AI chat button — toggles sidebar chat / focuses homepage input #}
+    {%- if theme_chat_enabled %}
     <button class="cl-header-btn cl-chat-toggle cl-chat-toggle--labelled"
             id="cl-chat-toggle"
             aria-label="Ask AI" title="Ask AI">
@@ -64,6 +65,7 @@
       </svg>
       <span class="cl-chat-toggle-label">Ask AI</span>
     </button>
+    {%- endif %}
 
     {# Keyboard shortcuts hint #}
     <button class="cl-header-btn cl-shortcuts-btn" id="cl-shortcuts-btn"

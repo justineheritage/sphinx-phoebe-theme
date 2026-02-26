@@ -142,7 +142,7 @@
         </article>
 
         {# ── Homepage: minimal AI chat (JS moves below h1) ─────── #}
-        {%- if pagename == master_doc %}
+        {%- if pagename == master_doc and theme_chat_enabled %}
         <div class="cl-chat-embed" id="cl-chat-embed">
           <div class="cl-chat-embed-header" id="cl-chat-embed-header">
             <button class="cl-chat-clear-btn cl-chat-clear-btn--home" id="cl-chat-clear-home"
@@ -203,7 +203,7 @@
     {%- endblock %}
 
     {# ── Sidebar chat panel (non-index pages) ─────────────────────── #}
-    {%- if pagename != master_doc %}
+    {%- if pagename != master_doc and theme_chat_enabled %}
     <aside class="cl-chat-panel" id="cl-chat-panel" aria-label="AI Chat">
       <div class="cl-chat-drag" id="cl-chat-drag" title="Drag to resize"></div>
       <div class="cl-chat-panel-header">
