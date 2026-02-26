@@ -39,7 +39,7 @@ html_theme_options = {
     "globaltoc_depth": 3,
     "globaltoc_collapse": True,
 
-    # Features - disabled for security (this is example docs)
+    # Features - disabled for security
     "chat_enabled": False,
     "feedback_enabled": False,
 
