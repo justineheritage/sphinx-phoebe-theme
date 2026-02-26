@@ -83,6 +83,57 @@ Control table of contents behavior:
        "globaltoc_includehidden": True,  # Default: True
    }
 
+Sidebar Footer Links
+~~~~~~~~~~~~~~~~~~~~
+
+Add social/project links to the bottom of the sidebar:
+
+.. code-block:: python
+
+   html_theme_options = {
+       "sidebar_footer_links": [
+           {
+               "platform": "github",
+               "url": "https://github.com/user/repo",
+               "text": "View on GitHub"
+           },
+           {
+               "platform": "gitlab",
+               "url": "https://gitlab.com/user/repo",
+               "text": "GitLab"
+           },
+           {
+               "platform": "twitter",
+               "url": "https://twitter.com/user"
+               # No text = icon only
+           }
+       ]
+   }
+
+**Supported platforms** (with built-in icons):
+
+- ``github`` - GitHub
+- ``gitlab`` - GitLab
+- ``twitter`` - Twitter/X
+- ``linkedin`` - LinkedIn
+- ``mastodon`` - Mastodon
+- ``discord`` - Discord
+- ``slack`` - Slack
+- ``email`` - Email (use ``mailto:`` URL)
+
+**Custom links:**
+
+.. code-block:: python
+
+   {
+       "platform": "custom",
+       "url": "https://example.com",
+       "text": "Custom Link",
+       "icon": '<svg>...</svg>'  # Optional custom SVG icon
+   }
+
+If ``text`` is omitted, only the icon is shown (smaller, more compact).
+
 Optional Features
 -----------------
 
@@ -220,6 +271,9 @@ All Options Reference
    * - ``globaltoc_includehidden``
      - boolean
      - Include hidden items (default: True)
+   * - ``sidebar_footer_links``
+     - list
+     - Social/project links at bottom of sidebar
    * - ``chat_enabled``
      - boolean
      - Enable AI chat widget (default: False)

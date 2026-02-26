@@ -42,6 +42,15 @@ html_theme_options = {
     # Features - disabled for security (this is example docs)
     "chat_enabled": False,
     "feedback_enabled": False,
+
+    # Sidebar footer links
+    "sidebar_footer_links": [
+        {
+            "platform": "github",
+            "url": "https://github.com/justineheritage/sphinx-phoebe-theme",
+            "text": "View on GitHub"
+        }
+    ],
 }
 
 html_static_path = ['_static']

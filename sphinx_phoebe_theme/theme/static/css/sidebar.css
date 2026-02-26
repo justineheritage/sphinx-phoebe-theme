@@ -21,7 +21,7 @@
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: var(--cl-sp-4) 0 var(--cl-sp-8);
+  padding: var(--cl-sp-4) 0 60px; /* Extra padding for GitHub link at bottom */
   overscroll-behavior: contain;
   scrollbar-width: thin;
   scrollbar-color: var(--cl-border) transparent;
@@ -204,6 +204,53 @@
 .cl-nav-help .cl-nav-link:hover,
 .cl-sidebar .cl-nav-help a.cl-nav-link:hover {
   color: var(--cl-text-secondary);
+}
+
+/* ── Sidebar Footer Links ───────────────────────────────────────────── */
+.cl-sidebar-footer-links {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--cl-sp-3) var(--cl-sp-4);
+  background: var(--cl-sidebar-bg);
+  border-top: 1px solid var(--cl-border-light);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cl-sp-2);
+}
+.cl-sidebar-footer-links a {
+  display: flex;
+  align-items: center;
+  gap: var(--cl-sp-2);
+  padding: var(--cl-sp-2) var(--cl-sp-3);
+  font-size: 0.75rem;
+  color: var(--cl-text-muted);
+  text-decoration: none;
+  border-radius: var(--cl-radius-md);
+  transition: all var(--cl-ease);
+  opacity: 0.6;
+  flex: 1;
+  min-width: 0;
+}
+.cl-sidebar-footer-links a:hover {
+  color: var(--cl-text-secondary);
+  background: var(--cl-bg-tertiary);
+  opacity: 1;
+}
+.cl-sidebar-footer-links svg {
+  flex-shrink: 0;
+  opacity: 0.5;
+  transition: opacity var(--cl-ease);
+}
+.cl-sidebar-footer-links a:hover svg {
+  opacity: 0.8;
+}
+/* Icon-only links (no text) */
+.cl-sidebar-footer-links a:not(:has(span)) {
+  flex: 0 0 auto;
+  min-width: auto;
+  justify-content: center;
 }
 
 /* ── Local TOC (on this page) ───────────────────────────────────────── */
