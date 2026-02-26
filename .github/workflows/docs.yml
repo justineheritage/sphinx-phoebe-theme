@@ -41,8 +41,13 @@ jobs:
           pip install sphinx
 
       - name: Build documentation
+        env:
+          RUNLLM_API_KEY: ${{ secrets.RUNLLM_API_KEY }}
+          RUNLLM_PIPELINE_ID: ${{ secrets.RUNLLM_PIPELINE_ID }}
         run: |
           cd docs
+          # Inject secrets into conf.py at build time
+          python inject_secrets.py
           make html
           # Add .nojekyll to disable Jekyll processing
           touch _build/html/.nojekyll
