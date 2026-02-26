@@ -2,65 +2,62 @@
 
 A modern, responsive Sphinx documentation theme with integrated AI chat and feedback widgets.
 
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
+![Sphinx](https://img.shields.io/badge/sphinx-4.0+-blue.svg)
+
 ## Features
 
-- **Modern 3-column responsive layout** — Sidebar, content area, and table of contents
-- **Dark mode** — Automatic system preference detection with manual toggle
-- **AI chat integration** — RunLLM streaming API support (optional)
-- **Per-page feedback widget** — Formspree integration (optional)
-- **Keyboard shortcuts** — `/` for search, `[`/`]` for navigation, `?` for help
-- **Mobile-friendly** — Fully responsive design
-- **Clean typography** — Inter font family with JetBrains Mono for code
-
-## Installation
-
-### From PyPI (coming soon)
-
-```bash
-pip install sphinx-phoebe-theme
-```
-
-### From Source
-
-```bash
-git clone https://github.com/justineheritage/sphinx-phoebe-theme.git
-cd sphinx-phoebe-theme
-pip install -e .
-```
+- 🎨 Modern 3-column responsive layout
+- 🌓 Dark mode with system detection
+- 💬 Optional AI chat (RunLLM integration)
+- 💌 Optional feedback widget (Formspree)
+- ⌨️ Keyboard shortcuts
+- 📱 Mobile-friendly
+- 🔍 Enhanced search with cards
 
 ## Quick Start
 
-In your Sphinx `conf.py`:
+```bash
+# Install
+pip install -e git+https://github.com/justineheritage/sphinx-phoebe-theme.git#egg=sphinx-phoebe-theme
 
-```python
+# Configure (conf.py)
 html_theme = "sphinx_phoebe_theme"
-```
 
-## Configuration
+extensions = [
+    'sphinx_phoebe_theme.extensions.theme_helpers',
+]
 
-### Basic Theme Options
-
-```python
 html_theme_options = {
-    # Colors (defaults shown)
-    "color_primary": "#2c3e50",  # Primary color
-    "color_accent": "#3498db",   # Accent color
-
-    # Navigation
-    "nav_title": "My Documentation",
-    "logo_icon": "_static/logo.svg",
-
-    # Table of contents
-    "globaltoc_depth": 5,
-    "globaltoc_collapse": True,
+    "nav_title": "My Docs",
+    "color_primary": "#2c3e50",
+    "color_accent": "#3498db",
 }
+
+# Build
+make html
+
+# Serve (required for search)
+cd _build/html && python -m http.server 8000
 ```
 
-### AI Chat Integration (Optional)
+## Documentation
 
-To enable the AI chat feature, you'll need a RunLLM account and API credentials.
+📚 **[Full Documentation →](docs/)**
 
-⚠️ **Security Warning:** Never commit API keys to version control. Use environment variables.
+- **[Installation Guide](docs/installation.md)** — Install from source or PyPI
+- **[Quick Start](docs/quickstart.md)** — Get started in 5 minutes
+- **[Configuration Reference](docs/configuration.md)** — All theme options
+- **[Features Overview](docs/features.md)** — What's included
+- **[AI Chat Setup](docs/chat-integration.md)** — Enable RunLLM chat (optional)
+- **[Basic Example](examples/basic/)** — Working example project
+
+## Optional Features
+
+### AI Chat
+
+See **[AI Chat Integration Guide](docs/chat-integration.md)** for detailed setup.
 
 ```python
 import os
@@ -72,9 +69,9 @@ html_theme_options = {
 }
 ```
 
-### Feedback Widget (Optional)
+⚠️ **Never commit API keys!** Use environment variables.
 
-To enable the feedback widget, you'll need a Formspree account.
+### Feedback Widget
 
 ```python
 import os
@@ -85,51 +82,41 @@ html_theme_options = {
 }
 ```
 
-### Google Analytics (Optional)
-
-```python
-html_theme_options = {
-    "google_analytics_account": "G-XXXXXXXXXX",
-}
-```
-
 ## Keyboard Shortcuts
 
-- **`/`** — Focus search
-- **`[`** — Previous page
-- **`]`** — Next page
-- **`?`** — Show keyboard shortcuts help
-- **`Escape`** — Close modals/panels
+- `/` — Focus search
+- `[` — Toggle sidebar
+- `←` `→` — Previous/next page
+- `?` — Show all shortcuts
 
 ## Development Status
 
-This theme is currently in **alpha** (v0.1.0) and under active development. It was extracted from a production documentation project and is being prepared for public release.
+**Version:** 0.1.0 (Alpha)
 
-### Phase 1: Security & Setup ✅ (Completed)
-- ✅ Removed hardcoded API credentials from JavaScript
-- ✅ Externalized all configuration to `html_theme_options`
-- ✅ Created repository structure and Python package
-- ✅ Added MIT license
-- ✅ Security-first configuration approach
+- ✅ Phase 1: Security & Setup (Complete)
+- 🚧 Phase 2: Documentation (In Progress)
+- 📋 Phase 3: PyPI Release (Planned)
 
-### Phase 2: Branding & Polish (In Progress)
-- ✅ Genericized color scheme
-- ⏳ Comprehensive documentation
-- ⏳ Example projects
+## Requirements
 
-### Phase 3: Release (Planned)
-- ⏳ Test across Sphinx versions 4.0-7.0
-- ⏳ Publish to PyPI
-- ⏳ Create documentation site
+- Python 3.8+
+- Sphinx 4.0+
+
+## Browser Support
+
+Chrome/Edge 90+, Firefox 88+, Safari 14+
 
 ## Contributing
 
-This is a personal project extracted from production code. Contributions, issues, and feature requests are welcome once the initial release is complete.
+Issues and suggestions welcome! This project was extracted from production code at Corelight and is now open source.
 
 ## License
 
 [MIT License](LICENSE)
 
-## Credits
+## Links
 
-Originally developed for internal documentation, now being released as open source to benefit the Sphinx community.
+- **Documentation:** [docs/](docs/)
+- **Example:** [examples/basic/](examples/basic/)
+- **Issues:** https://github.com/justineheritage/sphinx-phoebe-theme/issues
+- **Repository:** https://github.com/justineheritage/sphinx-phoebe-theme
