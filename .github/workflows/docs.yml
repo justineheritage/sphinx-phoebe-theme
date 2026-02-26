@@ -44,6 +44,8 @@ jobs:
         run: |
           cd docs
           make html
+          # Add .nojekyll to disable Jekyll processing
+          touch _build/html/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
