@@ -3,6 +3,13 @@ AI Chat Integration
 
 Enable an AI-powered chat widget on your documentation using RunLLM's streaming API.
 
+.. image:: _static/images/phoebethemechat.gif
+   :alt: Theme Features Demo
+   :align: center
+   :width: 80%
+
+|
+
 What You Get
 ------------
 

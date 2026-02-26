@@ -24,7 +24,7 @@ Features
 
 🚀 **Enhanced Navigation**
 
-- ⌨ Keyboard shortcuts (``/``, ``←``, ``→``, ``?``)
+-  Keyboard shortcuts (``/``, ``←``, ``→``, ``?``)
 -  Card-based search with context snippets
 -  Collapsible sidebar navigation
 -  Smart breadcrumbs

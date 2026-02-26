@@ -3,13 +3,6 @@ Configuration
 
 Complete reference for all theme configuration options.
 
-.. image:: _static/images/phoebethemechat.gif
-   :alt: Theme Features Demo
-   :align: center
-   :width: 80%
-
-|
-
 Basic Options
 -------------
 
