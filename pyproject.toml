@@ -51,5 +51,6 @@ sphinx_phoebe_theme = [
     "theme/*.conf",
     "theme/static/css/*.css",
     "theme/static/js/*.js",
+    "theme/static/js/search/*.js",
     "extensions/*.py",
 ]

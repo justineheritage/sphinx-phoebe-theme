@@ -60,8 +60,9 @@
    * Navigate to prev or next page.
    */
   function navigate(direction) {
+    // Look for <a rel="prev/next"> tags (Sphinx generates these in footer)
     var link = document.querySelector(
-      'link[rel="' + direction + '"]'
+      'a[rel="' + direction + '"]'
     );
     if (link && link.href) {
       window.location.href = link.href;

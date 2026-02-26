@@ -49,3 +49,5 @@ htmlcov/
 *.env
 .env.*
 secrets.json
+test_docs/
+.claude/
