@@ -8,7 +8,7 @@ Step 1: Install the Theme
 
 .. code-block:: bash
 
-   pip install -e git+https://github.com/justineheritage/sphinx-phoebe-theme.git#egg=sphinx-phoebe-theme
+   pip install sphinx-phoebe-theme
 
 See :doc:`installation` for more options.
 

@@ -42,7 +42,7 @@ Install the theme:
 
 .. code-block:: bash
 
-   pip install -e git+https://github.com/justineheritage/sphinx-phoebe-theme.git#egg=sphinx-phoebe-theme
+   pip install sphinx-phoebe-theme
 
 Configure in your ``conf.py``:
 

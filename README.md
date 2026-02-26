@@ -20,7 +20,7 @@ A modern, responsive Sphinx documentation theme with integrated AI chat and feed
 
 ```bash
 # Install
-pip install -e git+https://github.com/justineheritage/sphinx-phoebe-theme.git#egg=sphinx-phoebe-theme
+pip install sphinx-phoebe-theme
 
 # Configure (conf.py)
 html_theme = "sphinx_phoebe_theme"
@@ -94,8 +94,10 @@ html_theme_options = {
 **Version:** 0.1.0 (Alpha)
 
 - ✅ Phase 1: Security & Setup (Complete)
-- 🚧 Phase 2: Documentation (In Progress)
-- 📋 Phase 3: PyPI Release (Planned)
+- ✅ Phase 2: Documentation & Polish (Complete)
+- ✅ Phase 3: PyPI Release (Complete)
+
+**PyPI:** https://pypi.org/project/sphinx-phoebe-theme/
 
 ## Requirements
 

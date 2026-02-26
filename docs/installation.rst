@@ -9,10 +9,19 @@ Before installing, ensure you have:
 - Python 3.8 or higher
 - Sphinx 4.0 or higher
 
-From Source (Current Method)
------------------------------
+From PyPI (Recommended)
+-----------------------
 
-For development or early testing:
+Install the latest stable release:
+
+.. code-block:: bash
+
+   pip install sphinx-phoebe-theme
+
+From Source (Development)
+--------------------------
+
+For development or contributing:
 
 .. code-block:: bash
 
@@ -21,15 +30,6 @@ For development or early testing:
    pip install -e .
 
 This installs the theme in "editable" mode, allowing you to make changes and see them immediately.
-
-From PyPI (Coming Soon)
------------------------
-
-Once published to PyPI, you'll be able to install with:
-
-.. code-block:: bash
-
-   pip install sphinx-phoebe-theme
 
 Verify Installation
 -------------------
