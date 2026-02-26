@@ -49,8 +49,6 @@ jobs:
           # Inject secrets into conf.py at build time
           python inject_secrets.py
           make html
-          # Add .nojekyll to disable Jekyll processing
-          touch _build/html/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

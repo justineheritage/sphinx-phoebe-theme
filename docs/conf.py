@@ -39,8 +39,10 @@ html_theme_options = {
     "globaltoc_depth": 3,
     "globaltoc_collapse": True,
 
-    # Features - disabled for security
+    # Features - enabled via CI secrets
     "chat_enabled": False,
+    "chat_api_key": "",
+    "chat_pipeline_id": None,
     "feedback_enabled": False,
 
     # Sidebar footer links
@@ -54,6 +56,7 @@ html_theme_options = {
 }
 
 html_static_path = ['_static']
+html_extra_path = ['.nojekyll']  # Disable Jekyll on GitHub Pages
 html_title = "Sphinx Phoebe Theme Documentation"
 
 # Add any paths that contain custom static files (such as style sheets)
