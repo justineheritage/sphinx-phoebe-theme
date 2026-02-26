@@ -39,10 +39,8 @@ html_theme_options = {
     "globaltoc_depth": 3,
     "globaltoc_collapse": True,
 
-    # Features - enabled via CI secrets
+    # Features - disabled for security
     "chat_enabled": False,
-    "chat_api_key": "",
-    "chat_pipeline_id": None,
     "feedback_enabled": False,
 
     # Sidebar footer links
