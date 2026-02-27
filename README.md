@@ -44,20 +44,20 @@ cd _build/html && python -m http.server 8000
 
 ## Documentation
 
-📚 **[Full Documentation →](docs/)**
+📚 **[Full Documentation →](https://justineheritage.github.io/sphinx-phoebe-theme/)**
 
-- **[Installation Guide](docs/installation.md)** — Install from source or PyPI
-- **[Quick Start](docs/quickstart.md)** — Get started in 5 minutes
-- **[Configuration Reference](docs/configuration.md)** — All theme options
-- **[Features Overview](docs/features.md)** — What's included
-- **[AI Chat Setup](docs/chat-integration.md)** — Enable RunLLM chat (optional)
+- **[Installation Guide](https://justineheritage.github.io/sphinx-phoebe-theme/installation.html)** — Install from PyPI
+- **[Quick Start](https://justineheritage.github.io/sphinx-phoebe-theme/quickstart.html)** — Get started in 5 minutes
+- **[Configuration Reference](https://justineheritage.github.io/sphinx-phoebe-theme/configuration.html)** — All theme options
+- **[Features Overview](https://justineheritage.github.io/sphinx-phoebe-theme/features.html)** — What's included
+- **[AI Chat Setup](https://justineheritage.github.io/sphinx-phoebe-theme/chat-integration.html)** — Enable RunLLM chat (optional)
 - **[Basic Example](examples/basic/)** — Working example project
 
 ## Optional Features
 
 ### AI Chat
 
-See **[AI Chat Integration Guide](docs/chat-integration.md)** for detailed setup.
+See **[AI Chat Integration Guide](https://justineheritage.github.io/sphinx-phoebe-theme/chat-integration.html)** for detailed setup.
 
 ```python
 import os
@@ -118,7 +118,8 @@ Issues and suggestions welcome! This project was extracted from production code 
 
 ## Links
 
-- **Documentation:** [docs/](docs/)
-- **Example:** [examples/basic/](examples/basic/)
-- **Issues:** https://github.com/justineheritage/sphinx-phoebe-theme/issues
+- **Documentation:** https://justineheritage.github.io/sphinx-phoebe-theme/
+- **PyPI:** https://pypi.org/project/sphinx-phoebe-theme/
 - **Repository:** https://github.com/justineheritage/sphinx-phoebe-theme
+- **Issues:** https://github.com/justineheritage/sphinx-phoebe-theme/issues
+- **Example:** [examples/basic/](examples/basic/)

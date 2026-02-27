@@ -36,6 +36,7 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/justineheritage/sphinx-phoebe-theme"
+Documentation = "https://justineheritage.github.io/sphinx-phoebe-theme/"
 Repository = "https://github.com/justineheritage/sphinx-phoebe-theme"
 Issues = "https://github.com/justineheritage/sphinx-phoebe-theme/issues"
 
